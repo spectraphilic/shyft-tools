@@ -1,0 +1,60 @@
+---
+# created by Felix Matt, University of Oslo, 2016-11-10.
+
+crs: 'epsg:32643'
+nodata: -9999
+
+# Basin-units boundaries; catchments are treated as collection of basin-units
+basin-units:
+    basin-unit-1:
+        file: 'path/to/shapefile.shp'
+        cid: 1 # catchment_id
+    basin-unit-2:
+        file: 'path/to/shapefile.shp'
+        cid: 2 # catchment_id
+    basin-unit-3:
+        file: 'path/to/shapefile.shp'
+        cid: 3 # catchment_id
+
+# Shapefile with polygons describing the shyft cell shapes
+grid:
+    file: 'path/to/shapefile.shp'
+
+# Cell properties
+properties:
+    'z':
+        long_name: 'z'
+        file: 'path/to/geotiff.tif'
+        data_type: 'float:15.5'
+        min: 0.0
+        max: 8000.
+        unit: 'masl'
+    'ff':
+        long_name: 'forest_fraction'
+        file:  'path/to/geotiff.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+    'rf':
+        long_name: 'reservoir_fraction'
+        file: 'path/to/geotiff.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+    'lf':
+        long_name: 'lake_fraction'
+        file: 'path/to/geotiff.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+    'gf':
+        long_name: 'glacier_fraction'
+        file: 'path/to/geotiff.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+...
