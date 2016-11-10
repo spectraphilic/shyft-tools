@@ -158,7 +158,7 @@ def write_shyft_conform_nc(shapefile, setting_file, outfile):
             #crs_var.proj4 = catchment.proj4 
 
 if __name__=="__main__":
-    setting_file = "example/settings.yaml"
+    setting_file = "example/settings_example.yaml"
     shapefile = "cell-data"
     ncfile = "cell-data.nc"
     create_shyft_shapefile(setting_file, shapefile)
