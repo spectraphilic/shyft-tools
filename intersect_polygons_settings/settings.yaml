@@ -1,0 +1,67 @@
+---
+crs: 'epsg:32643'
+nodata: -9999
+
+# basin-units boundaries; catchments are treated as collection of basin-units
+basin-units:
+    residual_pand_thal:
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/basin/shapefiles/residual_pand_thal.shp'
+        cid: 1 # catchment_id
+    tirthan:
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/basin/shapefiles/tirthan/tirthan.shp'
+        cid: 2 # catchment_id
+    sainj:
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/basin/shapefiles/sainj/sainj.shp'
+        cid: 3 # catchment_id
+    residual_thal_rest:
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/basin/shapefiles/residual_thal_rest.shp'
+        cid: 4 # catchment_id
+    parvati:
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/basin/shapefiles/parvati/parvati.shp'
+        cid: 5 # catchment_id
+    manali:
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/basin/shapefiles/manali.shp'
+        cid: 6 # catchment_id
+
+# Shapefile with polygons describing the shyft cell shapes
+grid:
+    file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/basin/shapefiles/grid/grid_polygons_1km.shp'
+
+# Cell properties
+properties:
+    'z':
+        long_name: 'z'
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/dem/beas_dem_merged_clipped_43N_clipped.tif'
+        data_type: 'float:15.5'
+        min: 0.0
+        max: 8000.
+        unit: 'masl'
+    'ff':
+        long_name: 'forest-fraction'
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/landcover/LCType_clipped_43n_forest_mask.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+    'rf':
+        long_name: 'reservoir-fraction'
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/landcover/LCType_clipped_43n_reservoir_mask.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+    'lf':
+        long_name: 'lake-fraction'
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/landcover/LCType_clipped_43n_lake_mask.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+    'gf':
+        long_name: 'glacier-fraction'
+        file: '/home/felixm/00_PhD/enki/enki_data/beas/MODDRFS/glaciers/14_rgi50_SouthAsiaWest_utm43n_rasterized_mask.tif'
+        data_type: 'float:10.5'
+        min: 0.
+        max: 1.
+        unit: '-'
+...
