@@ -8,6 +8,8 @@ This modules provides functions that help to:
     * create a shyft-conform inputfile that works in line with the netcdf-repository
 """
 # by Felix Matt, University of Oslo, 2016-11-10.
+# intersection algorithm from:
+# http://gis.stackexchange.com/questions/74858/fiona-preffered-method-for-defining-a-schema
 
 from shapely.geometry import mapping, shape
 import fiona
@@ -16,9 +18,6 @@ import yaml
 import numpy as np
 from netCDF4 import Dataset
 from osgeo import gdal,osr
-
-# intersection algorithm from:
-# http://gis.stackexchange.com/questions/74858/fiona-preffered-method-for-defining-a-schema
 
 def get_settings(filename):
     """
@@ -151,15 +150,16 @@ def write_shyft_conform_nc(shapefile, setting_file, outfile):
                     var[i] = s['properties'][var_name]
  
             # write crs
-            crs_dim = dset.createDimension('crs_dim', None) # only dimension in nr of cells
+            crs_dim = dset.createDimension('crs_dim', None) # only dimension is nr of cells
             crs_var = dset.createVariable('crs','i4',('crs_dim',))
-            crs_var.epsg_code = "epsg:{}".format(shp.crs['init'])
-            #crs_var.grid_mapping_name = catchment.grid_mapping_name #needed?
-            #crs_var.proj4 = catchment.proj4 
+            crs_var.grid_mapping_name = 'transverse_mercator'
+            crs_var.epsg_code = shp.crs['init']
+            zone = shp.crs['init'][-2:]
+            crs_var.proj4 = '+proj=utm +zone={} +ellps=WGS84 +datum=WGS84 +units=m +no_defs'.format(zone) # Assumes utm on WGS84
 
 if __name__=="__main__":
-    setting_file = "example/settings_example.yaml"
+    setting_file = "intersect_polygons_settings/settings.yaml"
     shapefile = "cell-data"
-    ncfile = "cell-data.nc"
+    ncfile = "../shyft_input_nc/cell-data.nc"
     create_shyft_shapefile(setting_file, shapefile)
     write_shyft_conform_nc(shapefile, setting_file, ncfile)
